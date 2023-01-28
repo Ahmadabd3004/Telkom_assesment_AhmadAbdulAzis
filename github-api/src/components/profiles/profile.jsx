@@ -1,27 +1,6 @@
 import styles from "@/styles/profiles/Profile.module.css";
 import skeletonStyles from "@/styles/skeletons/Skeleton.module.css";
 const Profile = ({ imgSrc, name, fullName }) => {
-  let textFullName = (
-    <div
-      className={`${skeletonStyles.skeleton} ${skeletonStyles.skeletonText}`}
-    ></div>
-  );
-  let textName = (
-    <div
-      className={`${skeletonStyles.skeleton} ${skeletonStyles.skeletonText2}`}
-    ></div>
-  );
-
-  if (fullName) {
-    textFullName = (
-      <a href={`https://github.com/${name}`} target="_blank">
-        {fullName}
-      </a>
-    );
-  }
-  if (name) {
-    textName = <h5>{name}</h5>;
-  }
   return (
     <>
       <div className={styles.profile}>
@@ -36,8 +15,23 @@ const Profile = ({ imgSrc, name, fullName }) => {
         </div>
         <div className={styles.line}></div>
         <div className={`${styles.name}`}>
-          {textFullName}
-          {textName}
+          {name && fullName ? (
+            <>
+              <a href={`https://github.com/${name}`} target="_blank">
+                {fullName}
+              </a>
+              <h5>{name}</h5>
+            </>
+          ) : (
+            <>
+              <div
+                className={`${skeletonStyles.skeleton} ${skeletonStyles.skeletonText}`}
+              ></div>
+              <div
+                className={`${skeletonStyles.skeleton} ${skeletonStyles.skeletonText2}`}
+              ></div>
+            </>
+          )}
         </div>
       </div>
     </>

@@ -1,8 +1,9 @@
 import styles from "@/styles/boxes/Box.module.css";
-import skeletonStyles from "@/styles/skeletons/Skeleton.module.css";
+// import skeletonStyles from "@/styles/skeletons/Skeleton.module.css";
 import Box from "./box";
+import moment from "moment";
 
-const MainBox = ({ repoData }) => {
+const MainBox = ({ repoData, userName }) => {
   return (
     <>
       <div className={styles.boxArea}>
@@ -21,28 +22,13 @@ const MainBox = ({ repoData }) => {
         {repoData.length &&
           repoData.map((e, idx) => {
             let updatedAt = new Date(e.updated_at);
-            let date = updatedAt.getDate();
-            const months = [
-              "January",
-              "February",
-              "March",
-              "April",
-              "May",
-              "June",
-              "July",
-              "August",
-              "September",
-              "October",
-              "November",
-              "December",
-            ];
-            let month = months[updatedAt.getMonth()];
-            let year = updatedAt.getFullYear();
+            let date = moment(updatedAt).format("MMMM Do YYYY");
             return (
               <Box
                 repoName={e.name}
-                lastUpdate={`${date} ${month} ${year}`}
+                lastUpdate={date}
                 key={idx}
+                userName={userName}
               />
             );
           })}

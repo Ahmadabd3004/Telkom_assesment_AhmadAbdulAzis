@@ -1,0 +1,21 @@
+
+.closeArea{
+    position: absolute;
+    cursor: pointer;
+  
+    /* background-color: aqua; */
+    right: 70px;
+    top: 70px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.closeArea img{
+    width: 70px;
+    height: 70px;
+}
+
+.closeArea:hover{
+    opacity: 1;
+    transform: scale(1.2);
+}
