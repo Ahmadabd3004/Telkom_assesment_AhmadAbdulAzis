@@ -1,167 +1,100 @@
 import styles from "@/styles/LandingPage.module.css";
 import { useState } from "react";
 import "animate.css";
+import MainText from "@/components/texts/mainText";
+import InputText from "@/components/inputs/inputText";
+import Profile from "@/components/profiles/profile";
+import MainBox from "@/components/boxes/mainBox";
+import axios from "axios";
 
 const LandingPageContainer = () => {
   const [toggle, setToggle] = useState(false);
-  let textLeft = (
-    <div
-      className="animate__animated animate__slideInRight"
-      onClick={() => setToggle(!toggle)}
-    >
-      <h1 className={styles.title}>FIND</h1>
-    </div>
-  );
-  let textRight = (
-    <div className="animate__animated animate__slideInLeft">
-      <h1 className={styles.title2}>YOUR REPOSITORY</h1>;
-    </div>
-  );
-  let text = (
-    <div className={styles.text}>
-      {textLeft}
-      {textRight}
-    </div>
-  );
+  const [toggleRepo, setToggleRepo] = useState(false);
+  const [fakeRepo, setFakeRepo] = useState([]);
+  const [realRepo, setRealRepo] = useState([]);
+  const [user, setUser] = useState({});
+  const [searchUser, setSearchUser] = useState("");
+  const [repoData, setRepoData] = useState([
+    { repoName: "Todo-App", lastUpdate: "27 Nov 2022" },
+    { repoName: "Resto-App", lastUpdate: "03 Jan 2023" },
+    { repoName: "Project-3", lastUpdate: "04 Feb 2024" },
+    { repoName: "Project-4", lastUpdate: "05 Mar 2025" },
+    { repoName: "Project-5", lastUpdate: "06 Apr 2026" },
+    { repoName: "Project-6", lastUpdate: "07 Mei 2027" },
+    { repoName: "Project-7", lastUpdate: "08 Jun 2028" },
+    { repoName: "Project-8", lastUpdate: "09 Jul 2029" },
+  ]);
+  const toggleText = () => {
+    setToggle(!toggle);
+  };
+  const toggleRepoHandler = async () => {
+    setToggleRepo(true);
+    const { data: repo } = await axios.get(
+      `https://api.github.com/users/${searchUser}/repos?sort=updated`
+    );
 
+    const { data: user } = await axios.get(
+      `https://api.github.com/users/${searchUser}`
+    );
+    setRealRepo(repo);
+    setUser(user);
+  };
+  const closeRepo = () => {
+    setToggleRepo(false);
+    setRealRepo([]);
+    setUser({});
+  };
+  const changeSearchUser = (e) => {
+    setSearchUser(e.target.value);
+  };
+  let text = <MainText toggleText={toggleText} textStyle={"text"} />;
+  let input = "";
   if (toggle) {
     text = (
-      <div className={styles.text2}>
-        {textLeft}
-        {textRight}
-      </div>
+      <MainText
+        toggleText={toggleText}
+        textStyle={"textClicked"}
+        searchUser={searchUser}
+      />
+    );
+
+    input = (
+      <InputText
+        toggle={toggleRepoHandler}
+        changeSearchUser={changeSearchUser}
+      />
     );
   } else {
-    text = (
-      <div className={styles.text}>
-        {textLeft}
-        {textRight}
-      </div>
-    );
+    text = <MainText toggleText={toggleText} textStyle={"text"} />;
   }
   return (
     <>
       <div className={styles.container}>
         <img src="bg.jpg" alt="" className={styles.bg} />
         {text}
-        {toggle && (
-          <div className={styles.inputText}>
-            <input type="text" placeholder="Input your github username..." />
-            <div className={styles.btn}>
-              <a href="#main">
-                <img src="git.svg" alt="" />
-              </a>
-            </div>
-          </div>
-        )}
+        {input}
       </div>
 
-      <div className={styles.container} id="main">
-        <div className={styles.mainSection}>
-          <div className={styles.profile}>
-            <div className={`${styles.pp} ${styles.skeleton}`}>
-              {/* <img src="contohpp.jpeg" alt="" /> */}
+      {toggleRepo && (
+        <div className={styles.container2} id="main">
+          <div className={styles.mainSection}>
+            <div className={styles.closeArea}>
+              <div className={styles.closeBtn} onClick={() => closeRepo()}>
+                <img src="close.png" alt="" />
+              </div>
             </div>
-            <div className={styles.line}></div>
-            <div className={`${styles.name}`}>
-              {/* //Versi Skeleton */}
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText2}`}
-              ></div>
+            <Profile
+              imgSrc={user.avatar_url}
+              name={user.login}
+              fullName={user.name}
+            />
+            <MainBox repoData={realRepo} />
 
-              {/* Versi Ori */}
-              {/* <h1>Ahmad Abdul Azis</h1>
-              <h5>Ahmadabd3004</h5> */}
-            </div>
-          </div>
-          <div className={styles.boxArea}>
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
-
-            <div className={styles.box}>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText3}`}
-              ></div>
-              <div
-                className={`${styles.skeleton} ${styles.skeletonText4}`}
-              ></div>
-              {/* <h1>Todo-App</h1>
-              <h5>Last Update : 27 Nov 2022</h5> */}
-            </div>
+            {/* <Profile />
+          <MainBox repoData={fakeRepo} /> */}
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

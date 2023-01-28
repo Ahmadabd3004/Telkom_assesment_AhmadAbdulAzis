@@ -1,0 +1,46 @@
+.leftText{
+    cursor: pointer;
+    color: white;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    font-size: 230px;
+    font-weight: 900;
+    transition: 0.5s;
+}
+
+.rightText{
+    width: 400px;
+    color: white;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    font-size: 80px;
+    font-weight: 300;
+    transition: 0.5s;
+}
+
+.text {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.textClicked{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    transform: translateY(-50px) translateX(-20px) scale(0.6,0.6);
+    /* transform: scale(0.5,0.5); */
+}
+
+.text:hover .leftText {
+    color: rgba(255, 255, 255, 0.393);
+    transform: scale(1.1,1.1);
+}
+
+.text:hover .rightText {
+    transform: translateX(30px)
+}

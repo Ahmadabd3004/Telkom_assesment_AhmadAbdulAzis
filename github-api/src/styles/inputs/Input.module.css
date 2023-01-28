@@ -1,0 +1,74 @@
+.inputText {
+    position: relative;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    animation-name: example;
+    animation-duration: 0.5s;
+    /* background-color: aqua; */
+}
+
+@keyframes example {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.5,0.5) translateY(200px);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.inputText input{
+    width: 450px;
+    height: 30px;
+    font-size: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    /* border-radius: 20px; */
+    /* outline: none; */
+}
+
+.inputText input::placeholder{
+    /* width: 0px; */
+    height: 70px;
+    font-size: 30px;
+    /* border-radius: 20px; */
+}
+
+.inputText input{
+    width: 450px;
+    height: 30px;
+    font-size: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    /* border-radius: 20px; */
+    /* outline: none; */
+}
+
+.inputText input::placeholder{
+    /* width: 0px; */
+    height: 70px;
+    font-size: 30px;
+    /* border-radius: 20px; */
+}
+
+.btn {
+    cursor: pointer;
+    background-color: rgb(127, 127, 127);
+    margin-left: 10px;
+    width: 80px;
+    height: 73px;
+    border-radius: 10px;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    background-color: rgb(80, 80, 80);
+}
