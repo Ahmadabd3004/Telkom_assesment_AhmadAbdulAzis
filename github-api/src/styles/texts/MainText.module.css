@@ -19,7 +19,6 @@
 }
 
 .text {
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,13 +26,11 @@
 }
 
 .textClicked{
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.5s;
-    transform: translateY(-50px) translateX(-20px) scale(0.6,0.6);
-    /* transform: scale(0.5,0.5); */
+    transform: translateX(-20px) scale(0.6,0.6);
 }
 
 .text:hover .leftText {
@@ -43,4 +40,51 @@
 
 .text:hover .rightText {
     transform: translateX(30px)
+}
+@media only screen and (max-width: 1200px){
+    .textClicked{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: none;
+    }
+    .text{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: none;
+    }
+    .leftText{
+        text-align: center;
+        font-size: 150px;
+    }
+    .rightText{
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .text:hover .rightText {
+        transform: translateY(-20px);
+    }
+    .textClicked:hover .rightText {
+        width: 500px;
+        font-size: 30px;
+        transform: translateY(-20px);
+    }
+}
+@media only screen and (max-width: 800px){
+  
+    .leftText{
+        font-size: 90px;
+    }
+    .rightText{
+        font-size: 20px;
+        text-align: center;
+    }
+    .text:hover .rightText {
+        transform: translateY(-30px)
+    }
+    .text:hover .leftText {
+        transform: translateY(-30px) scale(1.1,1.1);
+    }
 }

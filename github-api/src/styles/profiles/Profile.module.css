@@ -59,3 +59,29 @@
 }
 
 
+@media only screen and (max-width: 800px){
+    .profile{
+        flex-direction: column;
+    }
+    .pp {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: grey;
+    }
+
+    .name {
+        margin-top: 10px;
+    }
+    .name a {
+        text-align: center;
+        font-size: 35px;
+    }
+    .name h5 {
+        text-align: center;
+    }
+
+    .line{
+        display: none;
+    }
+}
