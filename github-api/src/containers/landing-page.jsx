@@ -19,9 +19,6 @@ const LandingPageContainer = () => {
   const repo = useSelector((state) => state.repositories);
   const user = useSelector((state) => state.user);
 
-  const toggleText = () => {
-    setToggle(!toggle);
-  };
   const toggleRepoHandler = async () => {
     setToggleRepo(true);
     try {
@@ -58,35 +55,21 @@ const LandingPageContainer = () => {
       type: "user/removeData",
     });
   };
-  const changeSearchUser = (e) => {
-    setSearchUser(e.target.value);
-  };
-  let text = <MainText toggleText={toggleText} textStyle={"text"} />;
-  let input = "";
-  if (toggle) {
-    text = (
-      <MainText
-        toggleText={toggleText}
-        textStyle={"textClicked"}
-        searchUser={searchUser}
-      />
-    );
 
-    input = (
-      <InputText
-        toggle={toggleRepoHandler}
-        changeSearchUser={changeSearchUser}
-      />
-    );
-  } else {
-    text = <MainText toggleText={toggleText} textStyle={"text"} />;
-  }
   return (
     <>
       <div className={styles.container}>
         <img src="bg.jpg" alt="" className={styles.bg} />
-        {text}
-        {input}
+        <MainText
+          toggleText={() => setToggle(!toggle)}
+          textStyle={toggle ? "textClicked" : "text"}
+        />
+        {toggle && (
+          <InputText
+            toggle={toggleRepoHandler}
+            changeSearchUser={(e) => setSearchUser(e.target.value)}
+          />
+        )}
       </div>
 
       {toggleRepo && (
