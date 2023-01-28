@@ -1,6 +1,5 @@
 import styles from "@/styles/LandingPage.module.css";
 import { useState } from "react";
-import "animate.css";
 import MainText from "@/components/texts/mainText";
 import InputText from "@/components/inputs/inputText";
 import Profile from "@/components/profiles/profile";
@@ -8,6 +7,7 @@ import MainBox from "@/components/boxes/mainBox";
 import axios from "axios";
 import CloseBtn from "@/components/btn/CloseBtn";
 import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 const LandingPageContainer = () => {
   const dispatch = useDispatch();
@@ -24,20 +24,29 @@ const LandingPageContainer = () => {
   };
   const toggleRepoHandler = async () => {
     setToggleRepo(true);
+    try {
+      const { data: user } = await axios.get(
+        `https://api.github.com/users/${searchUser}`
+      );
+      dispatch({
+        type: "user/fetchData",
+        payload: user,
+      });
+    } catch (error) {
+      setToggleRepo(false);
+      return Swal.fire(
+        "User Not Found !",
+        "Input username correctly !",
+        "error"
+      );
+    }
+
     const { data: repo } = await axios.get(
       `https://api.github.com/users/${searchUser}/repos?sort=updated`
     );
     dispatch({
       type: "repositories/fetchData",
       payload: repo,
-    });
-
-    const { data: user } = await axios.get(
-      `https://api.github.com/users/${searchUser}`
-    );
-    dispatch({
-      type: "user/fetchData",
-      payload: user,
     });
   };
   const closeRepo = () => {
