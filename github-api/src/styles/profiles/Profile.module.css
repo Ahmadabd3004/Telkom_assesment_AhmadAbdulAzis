@@ -3,7 +3,6 @@
     position: relative;
     margin-top: 70px;
     width: 900px;
-    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +55,28 @@
     font-weight: 300;
     color: white;
 }
-
+@media only screen and (max-width: 1200px){
+    .pp {
+        width: 200px;
+        height: 200px;
+        background-color: grey;
+    }
+    .line{
+        display: none;
+    }
+    .profile{
+        flex-direction: column;
+    }
+    .name {
+        margin-top: 20px;
+    }
+    .name a {
+        text-align: center;
+    }
+    .name h5 {
+        text-align: center;
+    }
+}
 
 @media only screen and (max-width: 800px){
     .profile{
@@ -65,8 +85,6 @@
     .pp {
         width: 150px;
         height: 150px;
-        border-radius: 50%;
-        background-color: grey;
     }
 
     .name {

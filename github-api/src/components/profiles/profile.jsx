@@ -21,14 +21,14 @@ const Profile = ({ imgSrc, name, fullName }) => (
           <h5>{name}</h5>
         </>
       ) : (
-        <>
+        <div className={skeletonStyles.skeletonProfile}>
           <div
             className={`${skeletonStyles.skeleton} ${skeletonStyles.skeletonText}`}
           ></div>
           <div
             className={`${skeletonStyles.skeleton} ${skeletonStyles.skeletonText2}`}
           ></div>
-        </>
+        </div>
       )}
     </div>
   </div>

@@ -49,3 +49,15 @@
     color: white;
     font-weight: 300;
 }
+
+@media only screen and (max-width: 1200px){
+    .boxArea{
+        margin-top: 70px;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .box p{
+        max-width: 200px;
+    }
+}
