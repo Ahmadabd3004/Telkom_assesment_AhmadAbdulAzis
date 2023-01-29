@@ -8,6 +8,7 @@ import axios from "axios";
 import CloseBtn from "@/components/btn/CloseBtn";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import Image from "next/image";
 
 const LandingPageContainer = () => {
   const dispatch = useDispatch();
@@ -58,8 +59,10 @@ const LandingPageContainer = () => {
 
   return (
     <>
+      <div className={styles.bg}>
+        <Image src="/bg.jpg" alt="" fill />
+      </div>
       <div className={styles.container}>
-        <img src="bg.jpg" alt="" className={styles.bg} />
         <MainText
           toggleText={() => setToggle(!toggle)}
           textStyle={toggle ? "textClicked" : "text"}
@@ -71,7 +74,6 @@ const LandingPageContainer = () => {
           />
         )}
       </div>
-
       {toggleRepo && (
         <div className={styles.container2} id="main">
           <div className={styles.mainSection}>

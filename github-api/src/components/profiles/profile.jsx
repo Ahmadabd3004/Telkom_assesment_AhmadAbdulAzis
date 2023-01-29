@@ -1,12 +1,14 @@
 import styles from "@/styles/profiles/Profile.module.css";
 import skeletonStyles from "@/styles/skeletons/Skeleton.module.css";
+import Image from "next/image";
+
 const Profile = ({ imgSrc, name, fullName }) => (
   <div className={styles.profile}>
     <div className={`${styles.pp} ${skeletonStyles.skeleton}`}>
       {imgSrc && (
         <>
-          <a href={imgSrc} target="_blank">
-            <img src={imgSrc} alt="" />
+          <a href={imgSrc} target="_blank" rel="noreferrer">
+            <Image src={imgSrc} alt="" width={100} height={100} />
           </a>
         </>
       )}
@@ -15,7 +17,11 @@ const Profile = ({ imgSrc, name, fullName }) => (
     <div className={`${styles.name}`}>
       {name && fullName ? (
         <>
-          <a href={`https://github.com/${name}`} target="_blank">
+          <a
+            href={`https://github.com/${name}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             {fullName}
           </a>
           <h5>{name}</h5>

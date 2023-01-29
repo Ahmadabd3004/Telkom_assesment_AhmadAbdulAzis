@@ -1,4 +1,6 @@
+import Image from "next/image";
 import styles from "@/styles/inputs/Input.module.css";
+
 const InputText = ({ toggle, changeSearchUser, searchUser }) => (
   <div className={styles.inputText}>
     <input
@@ -9,7 +11,7 @@ const InputText = ({ toggle, changeSearchUser, searchUser }) => (
     />
     <div className={styles.btn}>
       <a href="#main" onClick={() => toggle()}>
-        <img src="git.svg" alt="" />
+        <Image src="git.svg" alt="" width={60} height={60} />
       </a>
     </div>
   </div>
