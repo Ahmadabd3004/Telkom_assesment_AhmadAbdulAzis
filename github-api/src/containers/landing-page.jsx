@@ -60,7 +60,7 @@ const LandingPageContainer = () => {
   return (
     <>
       <div className={styles.bg}>
-        <Image src="/bg.jpg" alt="" fill />
+        <Image src="/bg.jpg" alt="" fill objectFit="cover" />
       </div>
       <div className={styles.container}>
         <MainText
